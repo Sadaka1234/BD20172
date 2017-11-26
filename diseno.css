@@ -1,0 +1,94 @@
+.banner{
+  margin: auto;
+  width: 1028px;
+  height: 250px;
+  align-items: center;
+  padding-right: 25px;
+  padding-left: 25px;
+
+  border-radius: 15px;
+  background-image: url("banner.png")
+}
+
+body {
+  background-color: gray;
+  background-image: url("DI.jpg");
+
+}
+
+.menu{
+  margin: auto;
+  width: 1024px;
+  padding-right: 25px;
+  padding-left: 25px;
+  border-top-style: outset;
+
+  border-bottom-style: outset;
+
+  background-color: white;
+  border-radius: 15px;
+}
+
+ul#menu {
+    padding: 0;
+}
+
+ul#menu li {
+    display: inline;
+}
+
+ul#menu li a {
+    background-color: gray;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px 4px 0 0;
+    text-shadow: none;
+}
+
+ul#menu li a:hover {
+    background-color: orange;
+}
+
+table{
+    margin:auto;
+    border-color: black;
+    border-style: solid;
+    border-radius: 4px 4px 0 0;
+    overflow-y: auto;
+    background-color: white;
+}
+
+tr{
+    border-color: black;
+    border-style: solid;
+    background-color: white;
+}
+
+td{
+    border-color: black;
+    border-style: solid;
+    background-color: white;
+}
+
+.contenido{
+    margin: auto;
+    width: 1024px;
+  	padding-right: 25px;
+  	padding-left: 25px;
+  	border-top-style: outset;
+
+  	height: 120%;
+  	border-top-color: gray;
+  	border-right-color: gray;
+  	border-bottom-color: gray;
+  	border-left-color: gray;
+  	border-radius: 15px;
+    background-color: white;
+    font-style: oblique;
+    color: black;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    background-image: url("Especial_7.png");
+
+
+}
