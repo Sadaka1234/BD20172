@@ -17,11 +17,9 @@
  }
  // select loggedin users detail
 
- $res=pg_query($conn, "SELECT * FROM usuario WHERE username =".$_SESSION['username']);
- $userRow=pg_fetch_array($res);
-
+ $res=pg_query($conn, "SELECT * FROM usuario WHERE username = '".$_SESSION['username']."'");
+ $userRow = pg_fetch_array($res);
 ?>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -50,7 +48,7 @@
             </form>
 
             <?php
-            if ($userRow['PERMISO']==TRUE){
+            if ($userRow['PERMISO']=='t'){
               ?>
               <form action="nuevaspostulaciones.php" method="POST">
               <input type="submit" value="Postulaciones pendientes">
