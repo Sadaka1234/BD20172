@@ -16,6 +16,7 @@
   exit;
  }
  // select loggedin users detail
+
  $res=pg_query($conn, "SELECT * FROM usuario WHERE username =".$_SESSION['username']);
  $userRow=pg_fetch_array($res);
 
@@ -49,7 +50,7 @@
             </form>
 
             <?php
-            if ($userRow['permiso']==TRUE){
+            if ($userRow['PERMISO']==TRUE){
               ?>
               <form action="nuevaspostulaciones.php" method="POST">
               <input type="submit" value="Postulaciones pendientes">
