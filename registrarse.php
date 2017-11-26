@@ -15,8 +15,8 @@
         <div class="contenido">
             <table>
                 <tr>
-                    <td>Rol</td>
-                    <td>Nombre</td>
+                    <td>ID Usuario</td>
+                    <td>Nombre Usuario</td>
                 </tr>
             <?php
                 session_start();
@@ -29,11 +29,10 @@
                 if ($conn -> connect_error){
                   die ("Fallo la conexión". $conn->connect_error);
                 }
-                $sql = "SELECT id_usuario, username FROM usuario";
-                $result = $conn->query($sql) or die("Falló la consulta" .$conn->error);
-                if ($result->num_rows > 0) {
+                $result = pg_query($conn, "SELECT * FROM usuario") or die("Falló la consulta" .$conn->error);
+                if (pg_num_rows($result) > 0) {
                 // output data of each row
-                while($rows=  pg_fetch_array($result)){
+                while($rows =  pg_fetch_array($result)){
                     echo "<tr><td>".$rows[0]."</td>";
                     echo "<td>".$rows[1]."</td>";
                     }
@@ -44,7 +43,7 @@
                 $conn->close();
             ?>
         </table>
-			<form action="registroPersona.php" method="POST">
+			    <form action="registroPersona.php" method="POST">
             Nombre de Usuario:<br>
             <input type="text" name="username"><br>
             Contraseña:<br>

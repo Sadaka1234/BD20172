@@ -23,11 +23,11 @@
             $password = "marticito";
             $dbname = "dbtest";
 
-            $conn = pg_connect("host=localhost dbname=dbtest user=postgres password=Sadakanamalaika1");
+            $conn = pg_connect("host=localhost dbname=dbtest user=postgres password=marticito");
             if ($conn -> connect_error){
                 die ("Fallo la conexión". $conn->connect_error);
             }
-            $rol = (INT)$_POST['username'];
+            $username = $_POST['username'];
             $contraseña = $_POST['password'];
 
             if($username == NULL or $password == NULL or !preg_match("/^[a-zA-Z ]*$/",$username) {
@@ -38,7 +38,7 @@
                 if(!preg_match("/^[a-zA-Z ]*$/",$username)) {
                     echo "Solo Letras y espacios para el nombre<br>";
                 }
-                echo "Sadaka".$nombre."estuvo".$rol."aqui".$contraseña."oki";
+                echo "Sadaka".$username."estuvo aqui".$contraseña."oki";
                 }
                ?>
                 <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="POST">
@@ -51,7 +51,7 @@
         <?php
 }
             else{
-                $sql = "INSERT INTO usuarios VALUES ('$rol','$rol', 0,'$nombre','$contraseña');";
+                $sql = "insert into usuario (username, password) VALUES ('$username','$contraseña');";
                 $result = $conn->query($sql) or die("ERROR PI: Mami que sera lo que quiere el negro.  SQL ERROR: " . $conn->error);
                 $conn->close();
                 echo "Persona Ingresada Correctamente";
