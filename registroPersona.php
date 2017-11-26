@@ -27,15 +27,15 @@
             if ($conn -> connect_error){
                 die ("Fallo la conexión". $conn->connect_error);
             }
-            $username = $_POST['username'];
+            $nombre = $_POST['username'];
             $contraseña = $_POST['password'];
 
-            if($username == NULL or $password == NULL or !preg_match("/^[a-zA-Z ]*$/",$username) {
-                if($username == NULL or $contraseña == NULL){
+            if($nombre == NULL or $contraseña == NULL or !preg_match("/^[a-zA-Z ]*$/",$nombre) {
+                if($nombre == NULL or $contraseña == NULL){
                  echo "RELLENA TODOS LOS CAMPOS<br>";
                  }
 
-                if(!preg_match("/^[a-zA-Z ]*$/",$username)) {
+                if(!preg_match("/^[a-zA-Z ]*$/",$nombre)) {
                     echo "Solo Letras y espacios para el nombre<br>";
                 }
                 echo "Sadaka".$username."estuvo aqui".$contraseña."oki";
@@ -51,7 +51,7 @@
         <?php
 }
             else{
-                $sql = "insert into usuario (username, password) VALUES ('$username','$contraseña');";
+                $sql = "insert into usuario (username, password) VALUES ('$nombre','$contraseña');";
                 $result = $conn->query($sql) or die("ERROR PI: Mami que sera lo que quiere el negro.  SQL ERROR: " . $conn->error);
                 $conn->close();
                 echo "Persona Ingresada Correctamente";

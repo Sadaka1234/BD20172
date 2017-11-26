@@ -13,6 +13,15 @@
         </div>
 
         <div class="contenido">
+          <form action="registroPersona.php" method="POST">
+            Nombre de Usuario:<br>
+            <input type="text" name="username"><br>
+            Contraseña:<br>
+            <input type="text" name="password"><br>
+            <input type="submit" value="Ingresar">
+          </form>
+
+
             <table>
                 <tr>
                     <td>ID Usuario</td>
@@ -43,13 +52,6 @@
                 $conn->close();
             ?>
         </table>
-			    <form action="registroPersona.php" method="POST">
-            Nombre de Usuario:<br>
-            <input type="text" name="username"><br>
-            Contraseña:<br>
-            <input type="text" name="password"><br>
-            <input type="submit" value="Ingresar">
-          </form>
         </div>
       </body>
 </html>
