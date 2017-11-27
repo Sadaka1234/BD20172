@@ -40,9 +40,9 @@
                 $tipousuario = "el escritor, ser todopoderoso.";
             }
             else{
-                $tipousuario = "un seguidor, tu existencia en este mundo es insignificante.";
+                $tipousuario = "un seguidor, tu existencia en este  mundo es insignificante.";
             }
-           echo "Hola ".$userRow['username'].". En el sistema eres".$tipousuario." Que quieres?";  ?></li>
+           echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
 			      <form action="postulacion.php" method="POST">
             <input type="submit" value="Buscar Eventos">
            </form>
