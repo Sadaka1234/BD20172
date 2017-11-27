@@ -34,7 +34,15 @@
         </div>
 
         <div class="contenido">
-          <li><?php echo "Hola ".$userRow['username'].". Que quieres?";  ?></li>
+          <li><?php
+            $tipousuario = "";
+            if ($userRow['PERMISO']=='t'){
+                $tipousuario = "el escritor, ser todopoderoso.";
+            }
+            else{
+                $tipousuario = "un seguidor, tu existencia en este mundo es insignificante.";
+            }
+           echo "Hola ".$userRow['username'].". En el sistema eres".$tipousuario." Que quieres?";  ?></li>
 			      <form action="postulacion.php" method="POST">
             <input type="submit" value="Realizar postulación a asignatura">
            </form>
