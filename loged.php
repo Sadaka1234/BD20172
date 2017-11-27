@@ -51,15 +51,31 @@
             <input type="submit" value="Buscar Personajes">
             </form>
 
+		<form action="listadocasas.php" method="POST">
+            <input type="submit" value="Ver listado de casas actuales">
+            </form>
+
             
             <?php
             if ($userRow['PERMISO']=='t'){
               ?>
-	      <form action="agregareventos.php" method="POST">
+	    <form action="pagarcuentas.php" method="POST">
+            <input type="submit" value="Pagar cuentas al banco">
+            </form>
+
+	    <form action="listadopersonajes.php" method="POST">
+            <input type="submit" value="Ver listado de personajes actuales">
+            </form>
+
+	    <form action="listadocasas.php" method="POST">
+            <input type="submit" value="Ver listado de casas actuales">
+            </form>
+
+	    <form action="agregareventos.php" method="POST">
             <input type="submit" value="Agregar Eventos">
             </form>
 	 
-		<form action="agregarcasas.php" method="POST">
+	    <form action="agregarcasas.php" method="POST">
             <input type="submit" value="Agregar Casas">
             </form>
 
@@ -75,7 +91,7 @@
             <input type="submit" value="Editar Eventos">
             </form>
 	 
-		<form action="editarcasas.php" method="POST">
+	    <form action="editarcasas.php" method="POST">
             <input type="submit" value="Editar Casas">
             </form>
 
