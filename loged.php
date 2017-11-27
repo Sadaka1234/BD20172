@@ -18,7 +18,7 @@
  // select loggedin users detail
 
  $res=pg_query($conn, "SELECT * FROM usuario WHERE username = '".$_SESSION['username']."'");
- $userRow = pg_fetch_array($res);
+ $userRow = pg_fetch_array($res);	
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,27 +36,52 @@
         <div class="contenido">
           <li><?php echo "Hola ".$userRow['username'].". Que quieres?";  ?></li>
 			      <form action="postulacion.php" method="POST">
-            <input type="submit" value="Realizar postulación a asignatura">
+            <input type="submit" value="Buscar Eventos">
            </form>
 
 		        <form action="verpostulacion.php" method="POST">
-            <input type="submit" value="Ver mis postulaciones">
+            <input type="submit" value="Buscar Personajes">
             </form>
 
-            <form action="verpostaceptadas.php" method="POST">
-            <input type="submit" val ue="Ver postulaciones aceptadas de todos los usuarios">
-            </form>
-
+            
             <?php
             if ($userRow['PERMISO']=='t'){
               ?>
-              <form action="nuevaspostulaciones.php" method="POST">
-              <input type="submit" value="Postulaciones pendientes">
-              </form>
+	      <form action="agregareventos.php" method="POST">
+            <input type="submit" value="Agregar Eventos">
+            </form>
+	 
+		<form action="agregarcasas.php" method="POST">
+            <input type="submit" value="Agregar Casas">
+            </form>
 
-              <form action="feedback.php" method="POST">
-              <input type="submit" value="Feedback">
-              </form>
+	    <form action="agregarpersonajes.php" method="POST">
+            <input type="submit" value="Agregar Personajes">
+            </form>
+	
+	    <form action="agregarrazas.php" method="POST">
+            <input type="submit" value="Agregar Razas">
+            </form>		
+    
+            <form action="editareventos.php" method="POST">
+            <input type="submit" value="Editar Eventos">
+            </form>
+	 
+		<form action="editarcasas.php" method="POST">
+            <input type="submit" value="Editar Casas">
+            </form>
+
+	    <form action="editarpersonajes.php" method="POST">
+            <input type="submit" value="Editar Personajes">
+            </form>
+	
+	    <form action="editarrazas.php" method="POST">
+            <input type="submit" value="Editar Razas">
+            </form>
+	
+
+	      
+            
             <?php
           }
             ?>
