@@ -11,7 +11,7 @@
        die ("Fallo la conexión". $conn->connect_error);
      }
  // if session is not set this will redirect to login page
- if( !isset($_SESSION['username']) ) {
+ if( !isset($_SESSION[' username']) ) {
   header("Location: index.php");
   exit;
  }
@@ -34,7 +34,15 @@
         </div>
 
         <div class="contenido">
-          <li><?php echo "Hola ".$userRow['username'].". Que quieres?";  ?></li>
+          <li><?php
+          if ($userRow['PERMISO']=='t'){
+          $tipouser = 'El Escritor, dios todo poderoso';
+                }
+          else{
+              $tipouser = 'Un seguidor, usuario promedio sin derecho a la vida';
+
+          }
+          echo "Hola ".$userRow['username']."Tu eres ".$tipouser.". Que desea hacer?";  ?></li>
 			      <form action="postulacion.php" method="POST">
             <input type="submit" value="Realizar postulación a asignatura">
            </form>
