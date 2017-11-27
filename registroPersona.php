@@ -40,14 +40,10 @@
                   echo "Ese nombre de usuario ya existe<br>";
 
               }
-               ?>
 
-        <?php
               }
             else{
-
                 $result = pg_query("insert into usuario (username, password) VALUES ('".$nombre."','".$contraseña."')") or die("ERROR PI: Mami que sera lo que quiere el negro.  SQL ERROR: " . $conn->error);
-                $conn->close();
                 echo "Persona Registrada Correctamente";
                 echo "<ul id='menu'><li><a href='index.php'>Volver</a></li></ul>";
             }
