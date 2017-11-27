@@ -11,7 +11,7 @@
        die ("Fallo la conexión". $conn->connect_error);
      }
  // if session is not set this will redirect to login page
- if( !isset($_SESSION[' username']) ) {
+ if( !isset($_SESSION['username']) ) {
   header("Location: index.php");
   exit;
  }
@@ -35,14 +35,14 @@
 
         <div class="contenido">
           <li><?php
-          if ($userRow['PERMISO']=='t'){
-          $tipouser = 'El Escritor, dios todo poderoso';
-                }
-          else{
-              $tipouser = 'Un seguidor, usuario promedio sin derecho a la vida';
-
-          }
-          echo "Hola ".$userRow['username']."Tu eres ".$tipouser.". Que desea hacer?";  ?></li>
+            $tipousuario = "";
+            if ($userRow['PERMISO']=='t'){
+                $tipousuario = "el escritor, ser todopoderoso.";
+            }
+            else{
+                $tipousuario = "un seguidor, tu existencia en este mundo es insignificante.";
+            }
+           echo "Hola ".$userRow['username'].". En el sistema eres".$tipousuario." Que quieres?";  ?></li>
 			      <form action="postulacion.php" method="POST">
             <input type="submit" value="Buscar Eventos">
            </form>
