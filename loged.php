@@ -43,19 +43,26 @@
                 $tipousuario = "un seguidor, tu existencia en este  mundo es insignificante.";
             }
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
-			      <form action="postulacion.php" method="POST">
+			      
+
+            <?php
+            if ($userRow['PERMISO']=='f'){
+              ?>
+
+		<form action="buscareventos.php" method="POST">
             <input type="submit" value="Buscar Eventos">
            </form>
 
-		        <form action="verpostulacion.php" method="POST">
+		        <form action="buscarpersonajes.php" method="POST">
             <input type="submit" value="Buscar Personajes">
             </form>
 
 		<form action="listadocasas.php" method="POST">
             <input type="submit" value="Ver listado de casas actuales">
             </form>
+	<?php
+          }?>
 
-            
             <?php
             if ($userRow['PERMISO']=='t'){
               ?>
@@ -104,7 +111,7 @@
             </form>
 	
 
-	      
+	
             
             <?php
           }
