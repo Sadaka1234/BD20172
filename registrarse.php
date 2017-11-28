@@ -20,8 +20,6 @@
             <input type="text" name="password"><br>
             <input type="submit" value="Ingresar">
           </form>
-
-
             <table>
                 <tr>
                     <td>ID Usuario</td>
@@ -33,8 +31,8 @@
                 $username = "postgres";
                 $password = "marticito";
                 $dbname = "dbtest";
-
                 $conn = pg_connect("host=localhost dbname=dbtest user=postgres password=marticito");
+
                 if ($conn -> connect_error){
                   die ("Fallo la conexión". $conn->connect_error);
                 }

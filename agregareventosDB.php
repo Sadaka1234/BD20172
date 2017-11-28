@@ -20,7 +20,6 @@
 $res = pg_query($conn, "SELECT * FROM usuario WHERE username = '".$_SESSION['username']."'");
 $userRow = pg_fetch_array($res);
 
-$rowpersonaje = pg_query($conn,"SELECT * FROM personaje");
 
 ?>
 <!DOCTYPE html>
@@ -39,8 +38,7 @@ $rowpersonaje = pg_query($conn,"SELECT * FROM personaje");
         <div class="contenido">
           <li>
 	    <?php
-            $tipousuario = "";
-		
+            $tipousuario = "";	
 
             if ($userRow['PERMISO']=='t'){
                 $tipousuario = "el escritor, ser todopoderoso.";
@@ -49,31 +47,18 @@ $rowpersonaje = pg_query($conn,"SELECT * FROM personaje");
                 $tipousuario = "un seguidor, tu existencia en este  mundo es insignificante.";
             }
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
-			      
-<?php
-   
-    if( pg_num_rows($rowpersonaje) > 0)
-    {
-       echo "<p/>LISTADO DE CASAS<br/>";
-       echo "===================<p />";
-	
-       while($rows =  pg_fetch_array($rowpersonaje)){
-       echo "<p/>".$rows[0]." ".$rows[4]."<br/>";
-             
-                    }
-    }
-       else{
-       echo "<p>No se encontraron personajes</p>";
-       }
-           
-        ?>
-           
+
+ <?php
+$guardarevento = "INSERT INTO evento (nombre_evento, fecha,contenido) VALUES('".$_POST["nombre_evento"]."',TO_DATE('".$_POST["fecha"]."','MM-DD-YYYY'),'".$_POST["contenido"]."');";
+
+$save = pg_query($conn,$guardarevento);
+if (!$save) {
+	echo "Debes detenegte!!";
+
+}
+else {
+	echo "Has agregado un evento correctamente!."; 
+	}
+ ?>
 
 
-
-        </div>
-      </body>
-</html>
-
-
-<?php ob_end_flush(); ?>
