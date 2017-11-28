@@ -1,4 +1,3 @@
-
 <?php
  ob_start();
  session_start();
@@ -48,23 +47,16 @@ $userRow = pg_fetch_array($res);
                 $tipousuario = "un seguidor, tu existencia en este  mundo es insignificante.";
             }
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
-			      
-	<form action="agregarrazasDB.php" method="POST">
-	<h3>Nombre Raza</h3>
-        	<input type="text" name="nombre_raza"><br/>
-	<h3>Caracteristicas</h3>	
-		<input type="text" name="caracteristicas"><br/>
 
-		<input type="submit" value = "Agregar">
-            </form>
+ <?php
+$guardarraza = "INSERT INTO raza (nombre_raza, caracteristicas) VALUES('".$_POST["nombre_raza"]."','".$_POST["caracteristicas"]."');";
 
-	<?php
-	echo $_POST["nombre_raza"];
-	echo $_POST["caracteristicas"];	
-	?>
-        </div>
-      </body>
-</html>
+$save = pg_query($conn,$guardarraza);
+if (!$save) {
+	echo "Debes detenegte!!";
 
-
-<?php ob_end_flush(); ?>
+}
+else {
+	echo "Has agregado una raza correctamente!."; 
+	}
+ ?>
