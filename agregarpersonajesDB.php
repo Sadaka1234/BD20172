@@ -32,6 +32,7 @@ $userRow = pg_fetch_array($res);
         <div class ="menu">
           <ul id="menu">
             <li><a href="index.php">Logout</a></li>
+            <li><a href="loged.php">Volver atrás</a></li>
           </ul>
         </div>
 

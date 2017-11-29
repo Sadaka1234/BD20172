@@ -33,13 +33,14 @@ $userRow = pg_fetch_array($res);
         <div class ="menu">
           <ul id="menu">
             <li><a href="index.php">Logout</a></li>
+            <li><a href="loged.php">Volver atrás</a></li>
           </ul>
         </div>
 
         <div class="contenido">
           <li>
 	    <?php
-            $tipousuario = "";	
+            $tipousuario = "";
 
             if ($userRow['PERMISO']=='t'){
                 $tipousuario = "el escritor, ser todopoderoso.";
@@ -48,11 +49,11 @@ $userRow = pg_fetch_array($res);
                 $tipousuario = "un seguidor, tu existencia en este  mundo es insignificante.";
             }
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
-			      
+
 	<form action="agregarcasasDB.php" method="POST">
 	<h3>Nombre Casa</h3>
         	<input type="text" name="nombre_casa"><br/>
-	<h3>Cantidad de plata</h3>	
+	<h3>Cantidad de plata</h3>
 		<input type="text" name="cantidad_plata"><br/>
 
 		<input type="submit" value = "Agregar">
@@ -60,7 +61,7 @@ $userRow = pg_fetch_array($res);
 
 	<?php
 	echo $_POST["nombre_casa"];
-	echo $_POST["cantidad_plata"];	
+	echo $_POST["cantidad_plata"];
 	?>
         </div>
       </body>

@@ -32,13 +32,14 @@ $userRow = pg_fetch_array($res);
         <div class ="menu">
           <ul id="menu">
             <li><a href="index.php">Logout</a></li>
+            <li><a href="loged.php">Volver atrás</a></li>
           </ul>
         </div>
 
         <div class="contenido">
           <li>
 	    <?php
-            $tipousuario = "";	
+            $tipousuario = "";
 
             if ($userRow['PERMISO']=='t'){
                 $tipousuario = "el escritor, ser todopoderoso.";
@@ -57,11 +58,6 @@ if (!$mauro) {
 
 }
 else {
-	echo "Has agregado una casa correctamente!."; 
+	echo "Has agregado una casa correctamente!.";
 	}
  ?>
-
-
-
-
-
