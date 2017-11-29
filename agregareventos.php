@@ -39,7 +39,7 @@ $userRow = pg_fetch_array($res);
         <div class="contenido">
           <li>
 	    <?php
-            $tipousuario = "";	
+            $tipousuario = "";
 
             if ($userRow['PERMISO']=='t'){
                 $tipousuario = "el escritor, ser todopoderoso.";
@@ -48,14 +48,14 @@ $userRow = pg_fetch_array($res);
                 $tipousuario = "un seguidor, tu existencia en este  mundo es insignificante.";
             }
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
-			      
+
 	<form action="agregareventosDB.php" method="POST">
 	<h3>Nombre Evento</h3>
         	<input type="text" name="nombre_evento"><br/>
 	<h3>Fecha</h3>
-	<h4>Formato Fecha: MM-DD-YYYY</h4>	
+	<h4>Formato Fecha: MM-DD-YYYY</h4>
 		<input type="date" name="fecha"><br/>
-	<h3>Contenido</h3>	
+	<h3>Contenido</h3>
 		<input type="text" name="contenido"><br/>
 
 
@@ -64,8 +64,8 @@ $userRow = pg_fetch_array($res);
 
 	<?php
 	echo $_POST["nombre_evento"];
-	echo $_POST["fecha"];	
-	echo $_POST["contenido"];	
+	echo $_POST["fecha"];
+	echo $_POST["contenido"];
 	?>
         </div>
       </body>
