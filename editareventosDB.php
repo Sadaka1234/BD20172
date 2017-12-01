@@ -1,4 +1,3 @@
-
 <?php
  ob_start();
  session_start();
@@ -49,37 +48,21 @@ $userRow = pg_fetch_array($res);
                 $tipousuario = "un seguidor, tu existencia en este  mundo es insignificante.";
             }
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
-<?php
-	$out = '<form action="editareventosDB.php" method="POST">
-    Seleccione el evento a cambiar:<br>
-    <select name="id_evento">';
-    $evento = pg_query($conn,'select * from evento');
-    while ($row = pg_fetch_row($evento)) {
-    $out .= '<option value="'.$row[0].'">'.$row[1].'</option>';}
-    $out .= '</select><br>';
-    $out .= '
-      <h3>Nuevo Nombre del Evento</h3>
-          <input type="text" name="nuevo_nombre_evento"><br/>
-    	<h3>Nueva Fecha</h3>
-    	<h4>Formato Fecha: MM/DD/YYYY</h4>
-    		<input type="date" name="nueva_fecha"><br/>
-    	<h3>Nuevo_Contenido</h3>
-    		<input type="text" name="nuevo_contenido"><br/>';
-    $out .= '<input type="submit" value="Agregar"> </form>';
-    echo $out;
 
-?>
+ <?php
+ $editarrevento = "UPDATE evento
+ SET nombre_evento = '".$_POST["nuevo_nombre_evento"]."',
+ fecha = '".$_POST["nueva_fecha"]."',
+ contenido = '".$_POST["nuevo_contenido"]."'
+ WHERE id_evento = ".$_POST["id_evento"];
 
 
-	<?php
-	echo $_POST["id_evento"];
-  echo $_POST["nuevo_nombre_evento"];
-  echo $_POST["nueva_fecha"];
-	echo $_POST["nuevo_contenido"];
-	?>
-        </div>
-      </body>
-</html>
+$save = pg_query($conn,$editarrevento);
+if (!$save) {
+	echo "Debes detenegte!!";
 
-
-<?php ob_end_flush(); ?>
+}
+else {
+	echo "Has cambiado tu evento correctamente!.";
+	}
+ ?>
