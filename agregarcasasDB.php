@@ -38,7 +38,11 @@ $userRow = pg_fetch_array($res);
 
         <div class="contenido">
           <li>
+<<<<<<< HEAD
 	    <?php
+=======
+	           <?php
+>>>>>>> ac63cc8fde3d6471a8b512ec8718feb083ff5dfc
             $tipousuario = "";
 
             if ($userRow['PERMISO']=='t'){
@@ -49,7 +53,10 @@ $userRow = pg_fetch_array($res);
             }
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
 
+
+
  <?php
+
 $guardarcasa = "INSERT INTO casa (nombre_casa, dinero_casa) VALUES('".$_POST["nombre_casa"]."',".$_POST["cantidad_plata"].");";
 
 $mauro = pg_query($conn,$guardarcasa);
@@ -60,4 +67,8 @@ if (!$mauro) {
 else {
 	echo "Has agregado una casa correctamente!.";
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> ac63cc8fde3d6471a8b512ec8718feb083ff5dfc
  ?>

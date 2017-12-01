@@ -20,8 +20,6 @@
 $res = pg_query($conn, "SELECT * FROM usuario WHERE username = '".$_SESSION['username']."'");
 $userRow = pg_fetch_array($res);
 
-$rowpersonaje = pg_query($conn,"SELECT * FROM personaje");
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,7 +38,7 @@ $rowpersonaje = pg_query($conn,"SELECT * FROM personaje");
           <li>
 	    <?php
             $tipousuario = "";
-		
+
 
             if ($userRow['PERMISO']=='t'){
                 $tipousuario = "el escritor, ser todopoderoso.";
@@ -49,26 +47,25 @@ $rowpersonaje = pg_query($conn,"SELECT * FROM personaje");
                 $tipousuario = "un seguidor, tu existencia en este  mundo es insignificante.";
             }
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
-			      
+
 <?php
-   
-    if( pg_num_rows($rowpersonaje) > 0)
+
+    $rowcasa = pg_query($conn,"SELECT * FROM personaje");
+
+    if( pg_num_rows($rowcasa) > 0)
     {
        echo "<p/>LISTADO DE CASAS<br/>";
        echo "===================<p />";
-	
-       while($rows =  pg_fetch_array($rowpersonaje)){
-       echo "<p/>".$rows[0]." ".$rows[4]."<br/>";
-             
-                    }
+
+       while($rows =  pg_fetch_array($rowcasa)){
+         echo "<p/>".$rows[0]." ".$rows[4]."<br/>";
+       }
     }
        else{
-       echo "<p>No se encontraron personajes</p>";
+       echo "<p>No se encontraron casas</p>";
        }
-           
-        ?>
-           
 
+        ?>
 
 
         </div>
