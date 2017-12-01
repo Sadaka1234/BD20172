@@ -1,4 +1,3 @@
-
 <?php
  ob_start();
  session_start();
@@ -50,27 +49,15 @@ $userRow = pg_fetch_array($res);
             }
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
 
-	<form action="agregareventosDB.php" method="POST">
-	<h3>Nombre Evento</h3>
-        	<input type="text" name="nombre_evento"><br/>
-	<h3>Fecha</h3>
-	<h4>Formato Fecha: MM-DD-YYYY</h4>
-		<input type="date" name="fecha"><br/>
-	<h3>Contenido</h3>
-		<input type="text" name="contenido"><br/>
+ <?php
+$guardarpersonaje = "INSERT INTO personaje (id_casa, id_raza, id_profesion, nombre_personaje,dinero_personaje,fecha_ini,fecha_fin) VALUES(".$_POST["casa_personaje"].",".$_POST["raza_personaje"].",".$_POST["profesion_personaje"].",'".$_POST["nombre_personaje"]."',".$_POST["dinero_personaje"].",TO_DATE('".$_POST["f_inicio"]."','MM/DD/YYYY'),TO_DATE('".$_POST["f_termino"]."','MM/DD/YYYY'));";
 
+$save = pg_query($conn,$guardarpersonaje);
+if (!$save) {
+	echo "Debes detenegte!!";
 
-		<input type="submit" value = "Agregar">
-            </form>
-
-	<?php
-	echo $_POST["nombre_evento"];
-	echo $_POST["fecha"];
-	echo $_POST["contenido"];
-	?>
-        </div>
-      </body>
-</html>
-
-
-<?php ob_end_flush(); ?>
+}
+else {
+	echo "Has agregado un personaje correctamente!.";
+	}
+ ?>

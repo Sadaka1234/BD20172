@@ -21,6 +21,16 @@
 $res = pg_query($conn, "SELECT * FROM usuario WHERE username = '".$_SESSION['username']."'");
 $userRow = pg_fetch_array($res);
 
+$roweventos = pg_query($conn," SELECT evento.nombre_evento,
+    casa.nombre_casa,
+    personaje.nombre_personaje
+   FROM evento,
+    casa,
+    evento_casa,
+    personaje,
+    evento_personaje
+  WHERE (evento.id_evento = evento_casa.id_evento AND evento_casa.id_casa = casa.id_casa
+  AND evento.id_evento = evento_personaje.id_evento AND evento_personaje.id_personaje = personaje.id_personaje) ORDER BY id_evento");
 
 ?>
 <!DOCTYPE html>
@@ -34,6 +44,7 @@ $userRow = pg_fetch_array($res);
           <ul id="menu">
             <li><a href="index.php">Logout</a></li>
             <li><a href="loged.php">Volver atrás</a></li>
+
           </ul>
         </div>
 
@@ -41,6 +52,7 @@ $userRow = pg_fetch_array($res);
           <li>
 	    <?php
             $tipousuario = "";
+
 
             if ($userRow['PERMISO']=='t'){
                 $tipousuario = "el escritor, ser todopoderoso.";
@@ -50,24 +62,27 @@ $userRow = pg_fetch_array($res);
             }
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
 
-	<form action="agregareventosDB.php" method="POST">
-	<h3>Nombre Evento</h3>
-        	<input type="text" name="nombre_evento"><br/>
-	<h3>Fecha</h3>
-	<h4>Formato Fecha: MM-DD-YYYY</h4>
-		<input type="date" name="fecha"><br/>
-	<h3>Contenido</h3>
-		<input type="text" name="contenido"><br/>
+<?php
+
+    if( pg_num_rows($roweventos) > 0)
+    {
+       echo "<p/>LISTADO DE EVENTOS<br/>";
+       echo "===================<p />";
+
+       while($rows =  pg_fetch_array($roweventos)){
+       echo "<p/>Nombre del evento: ".$rows[0]. " Casa(s) asociada(s): ".$rows[1]. " Personaje(s) asociado(s): ".$rows[2]. " <br/>";
+
+                    }
+    }
+       else{
+       echo "<p>No se encontraron eventos, dile al autor que trabaje</p>";
+       }
+
+        ?>
 
 
-		<input type="submit" value = "Agregar">
-            </form>
 
-	<?php
-	echo $_POST["nombre_evento"];
-	echo $_POST["fecha"];
-	echo $_POST["contenido"];
-	?>
+
         </div>
       </body>
 </html>
