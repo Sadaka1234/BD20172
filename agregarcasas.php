@@ -61,7 +61,7 @@ $userRow = pg_fetch_array($res);
  <h3>Fecha Termino:</h3>
     <input type="date" name="fin"><br/>
 		<input type="submit" value = "Agregar">
-            </form>
+  </form>
 
 	<?php
 	echo $_POST["nombre_casa"];
