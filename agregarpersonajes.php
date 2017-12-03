@@ -65,6 +65,7 @@ $userRow = pg_fetch_array($res);
                       <input type="number" name ="dinero_personaje"><br>
                       Casa asociada (opcional):<br>
                       <select name="casa_personaje">';
+                      $out .= '<option value="NULL">Ninguna Casa</option>';
                       $casa = pg_query($conn,'select * from casa');
                       while ($row = pg_fetch_row($casa)) {
                       $out .= '<option value="'.$row[0].'">'.$row[1].'</option>';}
