@@ -60,15 +60,15 @@ $userRow = pg_fetch_array($res);
                           <h3>Fecha Inicio:</h3>
                           <input type ="date" name="ini"><br/>
                           <h3>Fecha Termino:</h3>
-                          <input type="date" name="fin"><br/>';
-                          $out .= '<h3>Nombre del Lider</h3>
+                          <input type="date" name="fin"><br/>
+                          Nombre del Lider<br>
                           <select name="id_lider">';
 
-                       $personaje = pg_query($conn,'select * from personaje where id_casa IS NULL');
-                       while ($row = pg_fetch_row($personaje) ) {
-                         $out .= '<option value="'.$row[0].'">'.$row[1].'</option>';}
-                        $out .= '</select><br>';
-                        $out .= '<input type="submit" value="Agregar"> </form>';
+                          $personaje = pg_query($conn,'select * from personaje where id_casa IS NULL');
+                          while ($row = pg_fetch_row($personaje) ) {
+                          $out .= '<option value="'.$row[0].'">'.$row[4].'</option>';}
+                          $out .= '</select><br>';
+                          $out .= '<input type="submit" value="Agregar"> </form>';
 
                        echo $out;
                ?>
@@ -78,6 +78,9 @@ $userRow = pg_fetch_array($res);
 	<?php
 	echo $_POST["nombre_casa"];
 	echo $_POST["cantidad_plata"];
+  echo $_POST["id_lider"];
+  echo $_POST["fin"];
+  echo $_POST["ini"];
 	?>
         </div>
       </body>
