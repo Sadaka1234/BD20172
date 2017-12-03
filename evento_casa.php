@@ -50,25 +50,31 @@ $userRow = pg_fetch_array($res);
             }
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
 
+           <?php
+
+              $out =   '<form action="evento_casaDB.php" method="POST">
+                        	Seleccione evento: <br>
+                          <select name="id_evento">';
+                          $evento = pg_query($conn,'select * from evento');
+                          while ($row = pg_fetch_row($evento) ) {
+                          $out .= '<option value="'.$row[0].'">'.$row[1].'</option>';}
+                          $out .= '</select><br>';
+                        	$out .= 'Casa asociada al evento<br>
+                          <select name="id_casa">';
+                          $casa = pg_query($conn,'select * from casa where id_casa not in (select id_casa from evento_casa)');
+                          while ($row = pg_fetch_row($casa)) {
+                          $out .= '<option value="'.$row[0].'">'.$row[1].'</option>';}
+                          $out .= '</select><br>';
+                          $out .= '<input type="submit" value="Agregar"> </form>';
+
+                       echo $out;
+               ?>
 
 
-	<form action="agregareventosDB.php" method="POST">
-	<h3>Nombre Evento</h3>
-        	<input type="text" name="nombre_evento"><br/>
-	<h3>Fecha</h3>
-	<h4>Formato Fecha: MM-DD-YYYY</h4>
-		<input type="date" name="fecha"><br/>
-	<h3>Contenido</h3>
-		<input type="text" name="contenido"><br/>
-
-
-		<input type="submit" value = "Agregar">
-            </form>
 
 	<?php
-	echo $_POST["nombre_evento"];
-	echo $_POST["fecha"];
-	echo $_POST["contenido"];
+	echo $_POST["id_evento"];
+	echo $_POST["id_casa"];
 	?>
         </div>
       </body>

@@ -1,4 +1,3 @@
-
 <?php
  ob_start();
  session_start();
@@ -50,29 +49,15 @@ $userRow = pg_fetch_array($res);
             }
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
 
+ <?php
+$guardarevento_personaje = "INSERT INTO evento_personaje VALUES(".$_POST["id_evento_seleccionado"].",".$_POST["id_personaje"].");";
 
+$save = pg_query($conn,$guardarevento_personaje);
+if (!$save) {
+	echo "Debes detenegte!!";
 
-	<form action="agregareventosDB.php" method="POST">
-	<h3>Nombre Evento</h3>
-        	<input type="text" name="nombre_evento"><br/>
-	<h3>Fecha</h3>
-	<h4>Formato Fecha: MM-DD-YYYY</h4>
-		<input type="date" name="fecha"><br/>
-	<h3>Contenido</h3>
-		<input type="text" name="contenido"><br/>
-
-
-		<input type="submit" value = "Agregar">
-            </form>
-
-	<?php
-	echo $_POST["nombre_evento"];
-	echo $_POST["fecha"];
-	echo $_POST["contenido"];
-	?>
-        </div>
-      </body>
-</html>
-
-
-<?php ob_end_flush(); ?>
+}
+else {
+	echo "Has agregado un personaje a tu evento correctamente!.";
+	}
+ ?>

@@ -1,4 +1,3 @@
-
 <?php
  ob_start();
  session_start();
@@ -50,29 +49,22 @@ $userRow = pg_fetch_array($res);
             }
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
 
+ <?php
+ $editarpersonaje = "UPDATE personaje
+ SET nombre_personaje = '".$_POST["nuevo_nombre_personaje"]."',
+ id_raza = ".$_POST["nueva_raza_personaje"].",
+ id_profesion  = ".$_POST["nueva_profesion_personaje"].",
+ id_casa  = ".$_POST["nueva_casa_personaje"].",
+ dinero_personaje  = ".$_POST["nuevo_dinero_personaje"]."
+ WHERE id_personaje = ".$_POST["id_personaje"];
 
 
-	<form action="agregareventosDB.php" method="POST">
-	<h3>Nombre Evento</h3>
-        	<input type="text" name="nombre_evento"><br/>
-	<h3>Fecha</h3>
-	<h4>Formato Fecha: MM-DD-YYYY</h4>
-		<input type="date" name="fecha"><br/>
-	<h3>Contenido</h3>
-		<input type="text" name="contenido"><br/>
+$save = pg_query($conn,$editarpersonaje);
+if (!$save) {
+	echo "Debes detenegte!!";
 
-
-		<input type="submit" value = "Agregar">
-            </form>
-
-	<?php
-	echo $_POST["nombre_evento"];
-	echo $_POST["fecha"];
-	echo $_POST["contenido"];
-	?>
-        </div>
-      </body>
-</html>
-
-
-<?php ob_end_flush(); ?>
+}
+else {
+	echo "Has cambiado tu personaje correctamente!.";
+	}
+ ?>

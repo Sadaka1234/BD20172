@@ -76,11 +76,6 @@ $userRow = pg_fetch_array($res);
                       while ($row = pg_fetch_row($profesion)) {
                       $out .= '<option value="'.$row[0].'">'.$row[1].'</option>';}
                       $out .= '</select><br>';
-                      $out .='Ingrese fecha de inicio de contrato para ser dueño de una casa (Solo si tiene una casa asociada):<br>
-                      <input type="date" name ="f_inicio"><br>
-                      Ingrese fecha de termino de contrato para ser dueño de una casa (Solo si tiene una casa asociada):<br>
-                      <input type="date" name ="f_termino"><br>;';
-
                       $out .= '<input type="submit" value="Agregar"> </form>';
 
                       echo $out;
@@ -92,8 +87,6 @@ $userRow = pg_fetch_array($res);
 	echo $_POST["raza_personaje"];
 	echo $_POST["profesion_personaje"];
 	echo $_POST["dinero_personaje"];
-	echo $_POST["f_inicio"];
-	echo $_POST["f_termino"];
 	?>
 
 <?php ob_end_flush(); ?>

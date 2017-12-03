@@ -82,6 +82,14 @@ $res=pg_query($conn, "SELECT * FROM usuario WHERE username = '".$_SESSION['usern
             <input type="submit" value="Agregar Eventos">
             </form>
 
+     <form action="evento_personaje.php" method="POST">
+            <input type="submit" value="Agregar personaje a un evento">
+            </form>
+
+     <form action="evento_casa.php" method="POST">
+            <input type="submit" value="Agregar casa a un evento">
+            </form>
+
 	    <form action="agregarcasas.php" method="POST">
             <input type="submit" value="Agregar Casas">
             </form>
