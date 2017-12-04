@@ -59,7 +59,7 @@ $dinero = $_POST["cantidad_plata"];
 $sql = "select * from personaje where id_personaje = ".$id_lider." and fecha_ini IS NULL";
 $query = pg_query($conn, $sql);
 if (!$sql){
-  echo "Ese personaje ya es lider de alguna casita, elige otro personaje";
+  echo "Ese personaje ya es lider de alguna casita, elige o tro personaje";
 
 }
 else{
@@ -67,7 +67,7 @@ else{
      echo "Todo termino antes de empezar... Revisa las fechas";
      }
    else{
-     $guardar = "INSERT INTO casa (dinero_casa , nombre ) VALUES (".$dinero.", '".$ncasa."')";
+     $guardar = "INSERT INTO casa (dinero_casa , nombre_casa ) VALUES (".$dinero.", '".$ncasa."')";
      $sql = pg_query($conn, $guardar);
      if (!$sql){
        echo "error en el insert de casas";
