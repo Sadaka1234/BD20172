@@ -57,9 +57,9 @@ $userRow = pg_fetch_array($res);
                           <input type="text" name="nombre_casa"><br/>
                         	<h3>Cantidad de plata</h3>
                         	<input type="number" name="cantidad_plata"><br/>
-                          <h3>Fecha Inicio:</h3>
+                          <h3>Fecha Inicio contrato del lider:</h3>
                           <input type ="date" name="ini"><br/>
-                          <h3>Fecha Termino:</h3>
+                          <h3>Fecha Termino contraro del lider:</h3>
                           <input type="date" name="fin"><br/>
                           Nombre del Lider<br>
                           <select name="id_lider">';

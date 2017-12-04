@@ -50,11 +50,10 @@ $userRow = pg_fetch_array($res);
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
 
  <?php
-$ncasa = $_POST["nombre_casa"];
-$id_lider = $_POST["id_lider"];
-$ini = $_POST["ini"];
-$fin = $_POST["fin"];
-$dinero = $_POST["cantidad_plata"];
+
+$id_lider = $_POST["nuevo_lider_casa"];
+$ini = $_POST["f_ini"];
+$fin = $_POST["f_fin"];
 
 $sql = "select * from personaje where id_personaje = ".$id_lider." and fecha_ini IS NULL";
 $query = pg_query($conn, $sql);
@@ -67,7 +66,14 @@ else{
      echo "Todo termino antes de empezar... Revisa las fechas";
      }
    else{
-     $guardar = "INSERT INTO casa (dinero_casa , nombre_casa ) VALUES (".$dinero.", '".$ncasa."')";
+
+
+
+
+     $guardar = "UPDATE casa
+     SET dinero_casa = ".$_POST["nuevo_dinero_casa"].",
+     nombre_casa =  '".$_POST["nuevo_nombre_casa"]."'"
+
      $sql = pg_query($conn, $guardar);
      if (!$sql){
        echo "error en el insert de casas";
@@ -75,7 +81,10 @@ else{
      else{
        echo "Casa Creada";
      }
-     $guardar = "UPDATE personaje set fecha_ini = '".$ini."', fecha_fin = '".$fin."', id_casa = currval('casa_id_casa_seq') where id_personaje = ".$id_lider;
+     $guardar = "UPDATE personaje
+     set fecha_ini = '".$ini."',
+     fecha_fin = '".$fin."',
+     id_casa = currval('casa_id_casa_seq') where id_personaje = ".$id_lider;
      $sql = pg_query($conn, $guardar);
      if (!$sql) {
          echo "ERror en el update";
@@ -83,6 +92,19 @@ else{
      else{
         echo "Personaje Hecho Lider";
      }
+
+     $editar_antiguo_lider = "UPDATE personaje
+     set fecha_ini = '"NULL"',
+     fecha_fin = '"NULL"',
+     id_casa = currval('casa_id_casa_seq') where id_personaje = ".$id_lider;
+     $sql = pg_query($conn, $guardar);
+     if (!$sql) {
+         echo "ERror en el update";
+     }
+     else{
+        echo "Personaje Hecho Lider";
+     }
+
    }
    }
 
