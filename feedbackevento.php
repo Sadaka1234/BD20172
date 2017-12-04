@@ -56,7 +56,7 @@ $userRow = pg_fetch_array($res);
                <select name="id_evento">';
                $evento = pg_query($conn,'select * from evento');
                while ($row = pg_fetch_row($evento)) {
-               $out .= '<option value="'.$row[0].'">'.$row[1].'</option>';}
+               $out .= '<option value="'.$row[0].'">'.$row[3].'</option>';}
                $out .= '</select><br>';
                $out .= 'Ingrese votacion: (1: Positivo, 0: Negativo) <br>
                <select name="voto_evento">
