@@ -50,6 +50,10 @@ $userRow = pg_fetch_array($res);
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
 
  <?php
+  if ($_POST["nueva_casa_personaje"]) {
+    $ini = 'NULL';
+    $fin = 'NULL';
+  }
  $editarpersonaje = "UPDATE personaje
  SET nombre_personaje = '".$_POST["nuevo_nombre_personaje"]."',
  id_raza = ".$_POST["nueva_raza_personaje"].",
