@@ -50,7 +50,7 @@ $userRow = pg_fetch_array($res);
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
 
  <?php
-$guardarevento = "INSERT INTO evento (nombre_evento, fecha,contenido) VALUES('".$_POST["nombre_evento"]."',TO_DATE('".$_POST["fecha"]."','MM/DD/YYYY'),'".$_POST["contenido"]."');";
+$guardarevento = "INSERT INTO evento (nombre_evento, fecha,contenido) VALUES('".$_POST["nombre_evento"]."','".$_POST["fecha"]."','".$_POST["contenido"]."');";
 
 $save = pg_query($conn,$guardarevento);
 if (!$save) {
