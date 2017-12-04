@@ -31,6 +31,7 @@ $userRow = pg_fetch_array($res);
         <div class ="menu">
           <ul id="menu">
             <li><a href="index.php">Logout</a></li>
+            <li><a href="loged.php">Volver</a></li>
           </ul>
         </div>
 
@@ -38,7 +39,6 @@ $userRow = pg_fetch_array($res);
           <li>
 	    <?php
             $tipousuario = "";
-
 
             if ($userRow['PERMISO']=='t'){
                 $tipousuario = "el escritor, ser todopoderoso.";
@@ -50,15 +50,25 @@ $userRow = pg_fetch_array($res);
 
 <?php
 
-    $rowcasa = pg_query($conn,"SELECT * FROM personaje");
+    $rowcasa = pg_query($conn,"Select nombre_casa, dinero_casa, cantidad, personaje.nombre_personaje  from casa, personaje, (Select casa.id_casa, count(id_personaje) as cantidad from personaje, casa where casa.id_casa = personaje.id_casa group by casa.id_casa) tabla1 where casa.id_casa = tabla1.id_casa and personaje.id_casa = casa.id_casa and personaje.fecha_ini IS NOT NULL ORDER BY dinero_casa DESC, cantidad DESC");
 
     if( pg_num_rows($rowcasa) > 0)
     {
-       echo "<p/>LISTADO DE CASAS<br/>";
-       echo "===================<p />";
+       echo "<table>
+             <tr>
+               <td>Nombre Casa</td>
+               <td>Dinero </td>
+               <td>Cantidad Integrantes</td>
+               <td>Lider </td>
+             </tr>";
 
        while($rows =  pg_fetch_array($rowcasa)){
-         echo "<p/>".$rows[0]." ".$rows[4]."<br/>";
+
+        echo "<tr><td>".$rows[0]."</td>";
+        echo "<td>".$rows[1]."</td>";
+        echo "<td>".$rows[2]."</td>";
+        echo "<td>".$rows[3]."</td>";
+
        }
     }
        else{

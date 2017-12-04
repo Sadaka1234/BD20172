@@ -34,6 +34,7 @@ $rowpersonaje = pg_query($conn,"SELECT * FROM personaje");
         <div class ="menu">
           <ul id="menu">
             <li><a href="index.php">Logout</a></li>
+            <li><a href="loged.php">Volver</a></li>
           </ul>
         </div>
 
@@ -41,7 +42,7 @@ $rowpersonaje = pg_query($conn,"SELECT * FROM personaje");
           <li>
 	    <?php
             $tipousuario = "";
-		
+
 
             if ($userRow['PERMISO']=='t'){
                 $tipousuario = "el escritor, ser todopoderoso.";
@@ -50,25 +51,25 @@ $rowpersonaje = pg_query($conn,"SELECT * FROM personaje");
                 $tipousuario = "un seguidor, tu existencia en este  mundo es insignificante.";
             }
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
-			      
+
 <?php
-   
+
     if( pg_num_rows($rowpersonaje) > 0)
     {
        echo "<p/>LISTADO DE PERSONAJES<br/>";
        echo "===================<p />";
-	
+
        while($rows =  pg_fetch_array($rowpersonaje)){
        echo "<p/>".$rows[0]." ".$rows[4]."<br/>";
-             
+
                     }
     }
        else{
        echo "<p>No se encontraron personajes</p>";
        }
-           
+
         ?>
-           
+
 
 
 
