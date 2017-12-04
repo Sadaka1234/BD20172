@@ -53,18 +53,17 @@ $userRow = pg_fetch_array($res);
 $guardarfeedback =
 "INSERT INTO feedback (id_usuario, comentario) VALUES(".$userRow['id_usuario'].",'".$_POST["comentario_personaje"]."');";
 
-
 $guardar_feedback_personaje = "INSERT INTO f_personaje
-(id_personaje, voto_personaje,id_feedback
-VALUES(".$_POST["id_personaje"].",".$_POST["voto_personaje"].",currval('feedback_id_feedback_seq'));";
+(id_personaje, voto_personaje,id_feedback)
+VALUES(".$_POST["id_personaje"].",".$_POST["voto_personaje"].",currval('feedback_id_feedback_seq'))";
 $save = pg_query($conn,$guardarfeedback);
 $save2 = pg_query($conn,$guardar_feedback_personaje);
 if (!$save) {
-	echo "Debes detenegte!!";
+	echo "Debes detenegte!! guardar en feedback no funciona";
 
 }
 if (!$save2) {
-	echo "Debes detenegte!!";
+	echo "Debes detenegte!! guardar en feedbackpersonaje no funciona";
 
 }
 
