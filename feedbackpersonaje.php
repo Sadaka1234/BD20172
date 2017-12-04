@@ -59,13 +59,14 @@ $userRow = pg_fetch_array($res);
                $out .= '<option value="'.$row[0].'">'.$row[4].'</option>';}
                $out .= '</select><br>';
                $out .= 'Ingrese votacion: (1: Positivo, 0: Negativo) <br>
-               <select name="id_personaje">
+               <select name="voto_personaje">
                <option value="TRUE">1</option>
                <option value="FALSE">0</option>
                </select><br>
                Ingrese comentario para el personaje:<br>
                <input type="text" name ="comentario_personaje"><br>';
                $out .= '<input type="submit" value="Votar"> </form>';
+
                echo $out;
            ?>
 

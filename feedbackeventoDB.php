@@ -1,4 +1,3 @@
-
 <?php
  ob_start();
  session_start();
@@ -50,36 +49,25 @@ $userRow = pg_fetch_array($res);
             }
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
 
-           <?php
-           	$out = '<form action="feedbackeventoDB.php" method="POST">
-               Seleccione el evento que quiere evaluar:<br>
-               <select name="id_evento">';
-               $evento = pg_query($conn,'select * from evento');
-               while ($row = pg_fetch_row($evento)) {
-               $out .= '<option value="'.$row[0].'">'.$row[1].'</option>';}
-               $out .= '</select><br>';
-               $out .= 'Ingrese votacion: (1: Positivo, 0: Negativo) <br>
-               <select name="voto_evento">
-               <option value="TRUE">1</option>
-               <option value="FALSE">0</option>
-               </select><br>
-               Ingrese comentario para el evento:<br>
-               <input type="text" name ="comentario_evento"><br>';
-               $out .= '<input type="submit" value="Votar"> </form>';
+ <?php
+$guardarfeedback =
+"INSERT INTO feedback (id_usuario, comentario) VALUES(".$userRow['id_usuario'].",'".$_POST["comentario_evento"]."');";
 
-               echo $out;
-           ?>
+$guardar_feedback_evento = "INSERT INTO f_evento
+(id_evento, voto_evento,id_feedback)
+VALUES(".$_POST["id_evento"].",".$_POST["voto_evento"].",currval('feedback_id_feedback_seq'))";
+$save = pg_query($conn,$guardarfeedback);
+$save2 = pg_query($conn,$guardar_feedback_evento);
+if (!$save) {
+	echo "Debes detenegte!! guardar en feedback no funciona";
 
+}
+if (!$save2) {
+	echo "Debes detenegte!! guardar en feedbackevento no funciona";
 
+}
 
-	<?php
-	echo $_POST["id_evento"];
-	echo $_POST["voto_evento"];
-  echo $_POST["comentario_evento"];
-	?>
-        </div>
-      </body>
-</html>
-
-
-<?php ob_end_flush(); ?>
+else {
+	echo "Has votado por un evento correctamente!.";
+	}
+ ?>
