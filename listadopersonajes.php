@@ -67,6 +67,7 @@ $rowpersonaje = pg_query($conn,"SELECT * FROM personaje");
        else{
        echo "<p>No se encontraron personajes</p>";
        }
+       
 
         ?>
 

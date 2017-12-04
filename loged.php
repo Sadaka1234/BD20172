@@ -49,15 +49,20 @@ $res=pg_query($conn, "SELECT * FROM usuario WHERE username = '".$_SESSION['usern
             if ($userRow['PERMISO']=='f'){
               ?>
 
-		<form action="listadoeventos.php" method="POST">
-            <input type="submit" value="Buscar Eventos">
+		         <form action="listadoeventos.php" method="POST">
+            <input type="submit" value="Información de Eventos">
            </form>
 
+<<<<<<< HEAD
 		 <form action="listadopersonajes.php" method="POST">
             <input type="submit" value="Buscar Personajes">
+=======
+		        <form action="listadopersonajes.php" method="POST">
+            <input type="submit" value="Listado Personajes">
+>>>>>>> 507bfee5a90e7e1f90f2bed3d0d775d0556be68b
             </form>
 
-		<form action="listadocasas.php" method="POST">
+		          <form action="listadocasas.php" method="POST">
             <input type="submit" value="Ver listado de casas actuales">
             </form>
 
@@ -81,6 +86,10 @@ $res=pg_query($conn, "SELECT * FROM usuario WHERE username = '".$_SESSION['usern
 	    <form action="listadopersonajes.php" method="POST">
             <input type="submit" value="Ver listado de personajes actuales">
             </form>
+
+        <form action="listadoeventos.php" method="POST">
+       <input type="submit" value="Información de Eventos">
+      </form>
 
 	    <form action="listadocasas.php" method="POST">
             <input type="submit" value="Ver listado de casas actuales">
