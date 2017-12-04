@@ -58,19 +58,17 @@ if (!isset($_POST['submit'])){
         echo '<select name="accion"><br>';
         echo '<option value=0>Cambiar Lider </option>';
         echo '<option value=1>Cambiar Nombre</option>';
-        echo '<option value=1>Cambiar Dinero</option>';
+        echo '<option value=2>Cambiar Dinero</option>';
         echo '</select><br>';
         echo '<input name="submit" type="submit" value="Acción"> </form>';
            }
-         else{
+else{
          echo "<p>No se encontraron eventos, dile al autor que trabaje</p>";
          }
       }
-else {
 
-}
 
-?>
+
 
 
 

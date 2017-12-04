@@ -55,7 +55,7 @@ $userRow = pg_fetch_array($res);
     <select name="id_evento">';
     $evento = pg_query($conn,'select * from evento');
     while ($row = pg_fetch_row($evento)) {
-    $out .= '<option value="'.$row[0].'">'.$row[1].'</option>';}
+    $out .= '<option value="'.$row[0].'">'.$row[3].'</option>';}
     $out .= '</select><br>';
     $out .= '
       <h3>Nuevo Nombre del Evento</h3>
@@ -65,7 +65,7 @@ $userRow = pg_fetch_array($res);
     		<input type="date" name="nueva_fecha"><br/>
     	<h3>Nuevo_Contenido</h3>
     		<input type="text" name="nuevo_contenido"><br/>';
-    $out .= '<input type="submit" value="Agregar"> </form>';
+    $out .= '<input type="submit" value="Editar"> </form>';
     echo $out;
 
 ?>
