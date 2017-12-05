@@ -32,7 +32,7 @@ $userRow = pg_fetch_array($res);
         <div class ="menu">
           <ul id="menu">
             <li><a href="index.php">Logout</a></li>
-            <li><a href="agregarcasas.php">Volver atrás</a></li>
+            <li><a href="editarcasas.php">Volver atrás</a></li>
           </ul>
         </div>
 
@@ -50,64 +50,63 @@ $userRow = pg_fetch_array($res);
            echo "Hola ".$userRow['username'].". En el sistema eres ".$tipousuario." Que quieres?";  ?></li>
 
  <?php
+$id_casa = $_SESSION["id_casa"];
+ if($_SESSION["accion"] == 0){      #Cambiar lider
+   $ini = $_POST["ini"];
+   $fin = $_POST["fin"];
 
-$id_lider = $_POST["nuevo_lider_casa"];
-$ini = $_POST["f_ini"];
-$fin = $_POST["f_fin"];
+        if ($ini < $fin){
 
-$sql = "select * from personaje where id_personaje = ".$id_lider." and fecha_ini IS NULL";
-$query = pg_query($conn, $sql);
-if (!$sql){
-  echo "Ese personaje ya es lider de alguna casita, elige otro personaje";
-
-}
-else{
-   if ($ini > $fin){
-     echo "Todo termino antes de empezar... Revisa las fechas";
-     }
+            $viejolider = "Select * from personaje where id_casa = ".$id_casa."and fecha_ini IS NOT NULL";
+            $viejolider = pg_query($conn, $viejolider);
+            $viejolider = pg_fetch_array($viejolider);
+            $nuevolider = $_POST["nuevo_lider"];
+            $nuevolider = "select * from personaje where id_personaje = ".$nuevolider;
+            $nuevolider = pg_query($conn, $nuevolider);
+            $nuevolider = pg_fetch_array($nuevolider);
+            $deslider = "update personaje set fecha_ini = NULL, fecha_fin = NULL where id_personaje = ".$viejolider[0];
+            $deslider = pg_query($conn, $deslider);
+            if (!$deslider){
+              echo "No se anulo, sorry";
+            }
+            $nuevolider = "update personaje set fecha_ini = '".$ini."', fecha_fin = '".$fin."' where id_personaje = ".$nuevolider[0];
+            $nuevolider = pg_query($conn,$nuevolider);
+            if (!$nuevolider){
+              echo "no se creo nuevo lider, sorry";
+            }
+            else {
+              echo "Cambio hecho con exito";
+            }
+          }
+      else {
+        echo "Revisa las fechas";
+      }
+  }
+ else if($_SESSION["accion"] == 1){
+    $newnombre = $_POST["nombre"];
+    $sql = "update casa set nombre_casa = '".$newnombre."' where id_casa = ".$id_casa;
+    $sql = pg_query($conn, $sql);
+    if (!$sql){
+      echo "Error asignando el nombre";
+    }
+    else{
+      echo "Nombre Cambiado con exito!";
+    }
+ }
+ else if($_SESSION["accion"] == 2){
+   $newnombre = $_POST["nombre"];
+   $sql = "update casa set dinero_casa = ".$newnombre." where id_casa = ".$id_casa;
+   $sql = pg_query($conn, $sql);
+   if (!$sql){
+     echo "Error asignando el dinero";
+   }
    else{
-
-
-
-
-     $guardar = "UPDATE casa
-     SET dinero_casa = ".$_POST["nuevo_dinero_casa"].",
-     nombre_casa =  '".$_POST["nuevo_nombre_casa"]."'"
-
-     $sql = pg_query($conn, $guardar);
-     if (!$sql){
-       echo "error en el insert de casas";
-     }
-     else{
-       echo "Casa Creada";
-     }
-     $guardar = "UPDATE personaje
-     set fecha_ini = '".$ini."',
-     fecha_fin = '".$fin."',
-     id_casa = currval('casa_id_casa_seq') where id_personaje = ".$id_lider;
-     $sql = pg_query($conn, $guardar);
-     if (!$sql) {
-         echo "ERror en el update";
-     }
-     else{
-        echo "Personaje Hecho Lider";
-     }
-
-     $editar_antiguo_lider = "UPDATE personaje
-     set fecha_ini = '"NULL"',
-     fecha_fin = '"NULL"',
-     id_casa = currval('casa_id_casa_seq') where id_personaje = ".$id_lider;
-     $sql = pg_query($conn, $guardar);
-     if (!$sql) {
-         echo "ERror en el update";
-     }
-     else{
-        echo "Personaje Hecho Lider";
-     }
-
+     echo "Dinero Cambiado con exito!";
    }
-   }
-
+ }
+ else{
+   echo "Khe?";
+}
 
 
 

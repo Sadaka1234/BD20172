@@ -52,9 +52,16 @@ $userRow = pg_fetch_array($res);
 <?php
 
 if (!isset($_POST['submit'])){
-
         echo '<form action="editarcasas.php" method="POST">';
-        echo "Ingresa tu acción";
+        echo "Seleccione Casa a editar:<br>";
+        $sql = "Select * from casa";
+        $sql = pg_query($conn, $sql);
+        echo "<select name='id_casa'><br>";
+        while ($row = pg_fetch_array($sql)){
+            echo "<option value='".$row[0]."'>".$row[1]."</option>";
+        }
+        echo "</select><br>";
+        echo "Ingresa tu acción<br>";
         echo '<select name="accion"><br>';
         echo '<option value=0>Cambiar Lider </option>';
         echo '<option value=1>Cambiar Nombre</option>';
@@ -63,65 +70,43 @@ if (!isset($_POST['submit'])){
         echo '<input name="submit" type="submit" value="Acción"> </form>';
            }
 else{
-         echo "<p>No se encontraron eventos, dile al autor que trabaje</p>";
-         }
-      }
+        $_SESSION["accion"] = $_POST["accion"];
+        $_SESSION["id_casa"] = $_POST["id_casa"];
+        if($_POST["accion"] == 0){      #Cambiar lider
 
 
+          $nolideres = "Select * from personaje where id_casa = ".$_POST["id_casa"]."and fecha_ini IS NULL";
+          $nolideres = pg_query($conn, $nolideres);
+          echo '<form action = "editarcasasDB.php" method="POST">';
+          echo "Seleccione nuevo lider:<br>";
+          echo '<select name="nuevo_lider"><br>';
+          while($lrow = pg_fetch_array($nolideres)){
+            echo "<option value='".$lrow[0]."'>".$lrow[4]."</option>";
+          }
+          echo "</select><br>";
+          echo "Fecha Inicio contrato del lider:<br>";
+          echo "<input type ='date' name='ini'><br/>";
+          echo "Fecha Termino contraro del lider:<br>";
+          echo "<input type='date' name='fin'><br/>";
+          echo '<input type="submit" value="Cambiar Lider"> </form>';
+        }
+        else if($_POST["accion"] == 1){
+          echo "Nuevo nombre para la casa:<br>";
+          echo '<form action = "editarcasasDB.php" method="POST">';
+          echo "<input type ='text' name='nombre'><br/>";
+          echo '<input type="submit" value="Cambiar Nombre"> </form>';
+        }
+        else if($_POST["accion"] == 2){
+          echo "Nueva cantidad de dinero:<br>";
+          echo '<form action = "editarcasasDB.php" method="POST">';
+          echo "<input type ='number' name='nombre'><br/>";
+          echo '<input type="submit" value="Cambiar Dinero"> </form>';
+        }
+        else{
+          echo "Khe?";
+        }
+     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	$out = '<form action="editarcasasDB.php" method="POST">
-    Seleccione la casa a cambiar:<br>
-    <select name="id_casa">';
-    $casa = pg_query($conn,'select * from casa');
-    while ($row = pg_fetch_row($casa)) {
-    $out .= '<option value="'.$row[0].'">'.$row[1].'</option>';}
-    $out .= '</select><br>';
-    $out .= 'Nuevo Nombre de la Casa<br>
-    <input type="text" name="nuevo_nombre_casa"><br/>
-    Ingrese el nuevo capital de la casa:<br>
-    <input type="number" name ="nuevo_dinero_casa"><br>
-    Escoga el nuevo Lider de la casa:<br>
-    <select name="nuevo_lider_casa">';
-    $lider = pg_query($conn,'select * from personaje where id_casa IS NULL');
-    while ($row = pg_fetch_row($lider)) {
-    $out .= '<option value="'.$row[0].'">'.$row[4].'</option>';}
-    $out .= '</select><br>';
-    $out .= '<h3>Fecha Inicio contrato del lider:</h3>
-    <input type ="date" name="f_ini"><br/>
-    <h3>Fecha Termino contrato del lider:</h3>
-    <input type="date" name="f_fin"><br/>';
-    $out .= '<input type="submit" value="Editar"> </form>';
-    echo $out;
 ?>
 
 
