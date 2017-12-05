@@ -60,14 +60,14 @@ VALUES(".$_POST["id_personaje"].",".$_POST["voto_personaje"].", currval('feedbac
 $save = pg_query($conn,$guardarfeedback);
 $save2 = pg_query($conn,$guardar_feedback_personaje);
 
-if (!$save)
+if (!$save){
   echo "Debes detenegte!! guardar en feedback no funciona";
 
 }
 if (!$save2) {
   $cambiar_voto = "UPDATE f_personaje SET
   voto_personaje = ".$_POST["voto_personaje"]."
-  WHERE id_personaje = ".$_POST["id_personaje"]" AND id_feedback = currval('feedback_id_feedback_seq')";
+  WHERE id_personaje = ".$_POST["id_personaje"]." AND id_feedback = currval('feedback_id_feedback_seq')";
 
   $save3 = pg_query($conn,$cambiar_voto);
   if (!$save3){
@@ -76,7 +76,7 @@ if (!$save2) {
   else {
     echo "Felicidades, has cambiado tu voto";}
 
-  }
+
 }
 
 else {
