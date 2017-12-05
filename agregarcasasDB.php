@@ -78,7 +78,7 @@ else{
      $guardar = "UPDATE personaje set fecha_ini = '".$ini."', fecha_fin = '".$fin."', id_casa = currval('casa_id_casa_seq') where id_personaje = ".$id_lider;
      $sql = pg_query($conn, $guardar);
      if (!$sql) {
-         echo "ERror en el update";
+         echo "Error en el update";
      }
      else{
         echo "Personaje Hecho Lider";
